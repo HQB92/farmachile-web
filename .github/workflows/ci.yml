@@ -1,0 +1,27 @@
+name: CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '18'
+
+      - run: npm install
+
+      - run: export NODE_OPTIONS=--openssl-legacy-provider && npm run build
+
+      - name: Deploy
+        run: |
+          # Comandos para desplegar tu aplicación
