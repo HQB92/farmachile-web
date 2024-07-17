@@ -3,11 +3,15 @@ name: Deploy to server LightSail TurnoFarm
 on:
   push:
     branches: [ main ]
+
 jobs:
   build:
     runs-on: ubuntu-latest
 
     steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
       - name: Deploy using ssh
         uses: appleboy/ssh-action@master
         with:
@@ -16,13 +20,12 @@ jobs:
           key: ${{ secrets.PRIVATE_KEY }}
           key_type: pem
           port: 22
-          #levantar frontend
           script: |
-            cd /home/bitnami/htdocs/farmachile-web
+            cd /home/bitnami/htdocs/farmachile-web || exit 1
             git clean -f
             git pull origin main
-            npm install 
+            export NODE_OPTIONS=--max-old-space-size=4096 --openssl-legacy-provider
+            npm ci
             npm run build
-            cp -r /home/bitnami/htdocs/farmachile-web/build/* /opt/bitnami/apache/htdocs/
-            
-            
+            sudo rm -rf /opt/bitnami/apache/htdocs/*
+            sudo cp -r /home/bitnami/htdocs/farmachile-web/build/* /opt/bitnami/apache/htdocs/
