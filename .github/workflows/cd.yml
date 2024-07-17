@@ -21,7 +21,7 @@ jobs:
             cd /home/bitnami/htdocs/farmachile-web
             git clean -f
             git pull origin main
-            npm install --only=prod
+            npm install 
             npm run build
             sudo cp -r /home/bitnami/htdocs/farmachile-web/build/* /opt/bitnami/apache/htdocs/
             
