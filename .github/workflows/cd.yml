@@ -49,5 +49,5 @@ jobs:
           script: |
             cd /home/bitnami/htdocs/
             tar -xzf build.tar.gz
-            sudo rm -rf /opt/bitnami/apache/htdocs/*
-            sudo cp -r build/* /opt/bitnami/apache/htdocs/
+            rm -rf /opt/bitnami/apache/htdocs/*
+            cp -r build/* /opt/bitnami/apache/htdocs/
