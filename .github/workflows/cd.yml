@@ -5,12 +5,39 @@ on:
     branches: [ main ]
 
 jobs:
-  build:
+  build-and-deploy:
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '14'  # Usar una versión de Node.js que sea más eficiente en el uso de memoria
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build project
+        env:
+          NODE_OPTIONS: '--max-old-space-size=256'
+        run: npm run build
+
+      - name: Archive build files
+        run: tar -czf build.tar.gz build
+
+      - name: Copy files via SSH
+        uses: appleboy/scp-action@master
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          key: ${{ secrets.PRIVATE_KEY }}
+          key_type: pem
+          port: 22
+          source: build.tar.gz
+          target: /home/bitnami/htdocs/
 
       - name: Deploy using ssh
         uses: appleboy/ssh-action@master
@@ -21,11 +48,7 @@ jobs:
           key_type: pem
           port: 22
           script: |
-            cd /home/bitnami/htdocs/farmachile-web || exit 1
-            git clean -f
-            git pull origin main
-            export NODE_OPTIONS=--max-old-space-size=4096 --openssl-legacy-provider
-            npm ci
-            npm run build
+            cd /home/bitnami/htdocs/
+            tar -xzf build.tar.gz
             sudo rm -rf /opt/bitnami/apache/htdocs/*
-            sudo cp -r /home/bitnami/htdocs/farmachile-web/build/* /opt/bitnami/apache/htdocs/
+            sudo cp -r build/* /opt/bitnami/apache/htdocs/
