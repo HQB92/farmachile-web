@@ -10,7 +10,7 @@ import comunasChile from './region-comuna.json';
 import './index.css';
 
 function App() {
-  const [selectedComuna, setSelectedComuna] = useState(null);
+  const [selectedComuna, setSelectedComuna] = useState('');
   const [selectedRegion, setSelectedRegion] = useState('');
   const [comunas, setComunas] = useState([]);
   const [farmacias, setFarmacias] = useState([]);
@@ -49,27 +49,33 @@ function App() {
       : '';
 
   return (
-      <Container>
+      <Container className="container">
         <Header />
-        <Box sx={{ display: 'flex', justifyContent: 'center', my: 2 }}>
-          <Dropdown
-              label="Seleccione una región:"
-              options={comunasChile.map(region => ({ label: region.region, value: region.region }))}
-              value={selectedRegion}
-              onChange={(e) => setSelectedRegion(e.target.value)}
-          />
-          {comunas.length > 0 && (
+        <Box sx={{ flexGrow: 1, my: 2 }}>
+          <Grid container spacing={2} justifyContent="center">
+            <Grid item xs={12} sm={6} md={4}>
               <Dropdown
-                  label="Seleccione una comuna:"
-                  options={comunas.map(comuna => ({ label: comuna, value: comuna }))}
-                  value={selectedComuna}
-                  onChange={(e) => setSelectedComuna(e.target.value)}
+                  label="Seleccione una región:"
+                  options={comunasChile.map(region => ({ label: region.region, value: region.region }))}
+                  value={selectedRegion}
+                  onChange={(e) => setSelectedRegion(e.target.value)}
               />
-          )}
+            </Grid>
+            {comunas.length > 0 && (
+                <Grid item xs={12} sm={6} md={4}>
+                  <Dropdown
+                      label="Seleccione una comuna:"
+                      options={comunas.map(comuna => ({ label: comuna, value: comuna }))}
+                      value={selectedComuna}
+                      onChange={(e) => setSelectedComuna(e.target.value)}
+                  />
+                </Grid>
+            )}
+          </Grid>
         </Box>
         {farmaciaTurno ? (
-            <Grid container spacing={2} justifyContent="center">
-              <Grid item xs={12} sm={6} md={4}>
+            <Grid container spacing={3} justifyContent="center">
+              <Grid item xs={12} sm={6} md={5}>
                 <PharmacyCard
                     name={farmaciaTurno.local_nombre}
                     address={farmaciaTurno.local_direccion}

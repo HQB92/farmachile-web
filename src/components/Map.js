@@ -3,7 +3,7 @@ import { Box } from '@mui/material';
 
 const Map = ({ src }) => {
     return (
-        <Box sx={{ width: '100%', height: '450px', mt: 2 }}>
+        <Box sx={{ width: '100%', height: '350px', mt: 2, paddingBottom:'45px'}}>
             <iframe
                 src={src}
                 width="100%"

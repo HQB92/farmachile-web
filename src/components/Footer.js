@@ -3,9 +3,11 @@ import { Box, Typography } from '@mui/material';
 
 const Footer = () => {
     return (
-        <Box sx={{ textAlign: 'center', py: 2, backgroundColor: '#1976d2', color: 'white', mt: 4 }}>
-            <Typography variant="body2">© 2024 Farmacias de Turno. Todos los derechos reservados.</Typography>
-        </Box>
+        <div className="footer">
+            <Box sx={{ textAlign: 'center', py: 2, backgroundColor: '#fcfcfc66', color: 'black', mt: 4 }}>
+                <Typography variant="body2">©Hugo Esteban 2024. Todos los derechos reservados.</Typography>
+            </Box>
+        </div>
     );
 }
 
