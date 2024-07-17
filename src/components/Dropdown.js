@@ -4,7 +4,11 @@ import { FormControl, InputLabel, MenuItem, Select } from '@mui/material';
 const Dropdown = ({ label, options, value, onChange }) => {
     return (
         <FormControl fullWidth variant="filled" sx={{ m: 1, minWidth: 120, margin:0 }}>
-            <InputLabel>{label}</InputLabel>
+            <InputLabel sx={{
+                '&.Mui-focused': {
+                    color: 'rgba(0, 0, 0, 0.8)',
+                },
+            }}>{label}</InputLabel>
             <Select
                 value={value || ''} // Asegúrate de que el valor sea una cadena vacía en lugar de null
                 onChange={onChange}
