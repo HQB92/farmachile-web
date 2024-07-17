@@ -18,7 +18,7 @@ jobs:
           port: 22
           #levantar frontend
           script: |
-            cd /home/bitnami/htdocs/
+            cd /home/bitnami/htdocs/farmacile-web
             git clean -f
             git pull origin main
             npm install 
