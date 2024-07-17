@@ -8,7 +8,7 @@ const Map = ({ src }) => {
                 src={src}
                 width="100%"
                 height="100%"
-                style={{ border: 0 }}
+                style={{ border: 0, opacity: 0.75 }}
                 allowFullScreen=""
                 loading="lazy"
                 title="farmacias-de-turno"
