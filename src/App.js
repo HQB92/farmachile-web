@@ -9,6 +9,7 @@ import { fetchFarmacias } from './services/api';
 import comunasChile from './region-comuna.json';
 import './index.css';
 
+
 function App() {
   const [selectedComuna, setSelectedComuna] = useState('');
   const [selectedRegion, setSelectedRegion] = useState('');
@@ -50,50 +51,70 @@ function App() {
 
   return (
       <Container className="container">
-        <Header />
-        <Box sx={{ flexGrow: 1, my: 2 }}>
-          <Grid container spacing={2} justifyContent="center">
-            <Grid item xs={12} sm={6} md={4}>
-              <Dropdown
-                  label="Seleccione una región:"
-                  options={comunasChile.map(region => ({ label: region.region, value: region.region }))}
-                  value={selectedRegion}
-                  onChange={(e) => setSelectedRegion(e.target.value)}
-              />
-            </Grid>
-            {comunas.length > 0 && (
-                <Grid item xs={12} sm={6} md={4}>
-                  <Dropdown
-                      label="Seleccione una comuna:"
-                      options={comunas.map(comuna => ({ label: comuna, value: comuna }))}
-                      value={selectedComuna}
-                      onChange={(e) => setSelectedComuna(e.target.value)}
-                  />
-                </Grid>
-            )}
-          </Grid>
-        </Box>
-        {farmaciaTurno ? (
-            <Grid container spacing={3} justifyContent="center">
-              <Grid item xs={12} sm={6} md={5}>
-                <PharmacyCard
-                    name={farmaciaTurno.local_nombre}
-                    address={farmaciaTurno.local_direccion}
-                    phone={farmaciaTurno.local_telefono}
-                    date={farmaciaTurno.fecha.split('-').reverse().join('-')}
-                    link={`https://www.waze.com/ul?ll=${farmaciaTurno.local_lat}%2C${farmaciaTurno.local_lng}&navigate=yes&zoom=17`}
-                />
+          <Header/>
+          <Box sx={{flexGrow: 1, my: 2}}>
+              <Grid container spacing={2} justifyContent="center">
+                  <Grid item xs={12} sm={6} md={4}>
+                      <Dropdown
+                          label="Seleccione una región:"
+                          options={comunasChile.map(region => ({
+                              label: region.region,
+                              value: region.region
+                          }))}
+                          value={selectedRegion}
+                          onChange={(e) => setSelectedRegion(e.target.value)}
+                      />
+                  </Grid>
+                  {comunas.length > 0 && (
+                      <Grid item xs={12} sm={6} md={4}>
+                          <Dropdown
+                              label="Seleccione una comuna:"
+                              options={comunas.map(comuna => ({
+                                  label: comuna,
+                                  value: comuna
+                              }))}
+                              value={selectedComuna}
+                              onChange={(e) => setSelectedComuna(e.target.value)}
+                          />
+                      </Grid>
+                  )}
               </Grid>
-              <Grid item xs={12}>
-                <Map src={googleMapUrl} />
+          </Box>
+          {farmaciaTurno ? (
+              <Grid container spacing={3} justifyContent="center">
+                  <Grid item xs={12} sm={6} md={5}>
+                      <PharmacyCard
+                          name={farmaciaTurno.local_nombre}
+                          address={farmaciaTurno.local_direccion}
+                          phone={farmaciaTurno.local_telefono}
+                          date={farmaciaTurno.fecha.split('-').reverse().join('-')}
+                          link={`https://www.waze.com/ul?ll=${farmaciaTurno.local_lat}%2C${farmaciaTurno.local_lng}&navigate=yes&zoom=17`}
+                      />
+                  </Grid>
+                  <Grid item xs={12}>
+                      <Map src={googleMapUrl}/>
+                  </Grid>
               </Grid>
-            </Grid>
-        ) : (
-            selectedComuna && <Typography variant="body1" align="center">No hay farmacias de turno en esta comuna</Typography>
-        )}
-        <Footer />
+          ) : (
+              selectedComuna &&
+              <Typography variant="body1" align="center">No hay farmacias de
+                  turno
+                  en esta comuna</Typography>
+          )}
+          <div className="ads">
+              <ins className="adsbygoogle"
+                   style={{display: 'block'}}
+                   data-ad-client="ca-pub-2072509419197864"  // Tu ID de cliente
+                   data-ad-slot="1323706138"          // Tu ID de slot
+                   data-ad-format="auto"
+                   data-full-width-responsive="true">
+              </ins>
+          </div>
+          <Footer/>
+
       </Container>
-  );
+  )
+      ;
 }
 
 export default App;
