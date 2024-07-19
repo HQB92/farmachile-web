@@ -8,6 +8,8 @@ import Footer from './components/Footer';
 import { fetchFarmacias } from './services/api';
 import comunasChile from './region-comuna.json';
 import './index.css';
+import {Adsense} from '@ctrl/react-adsense';
+
 
 
 function App() {
@@ -51,6 +53,7 @@ function App() {
 
   return (
       <Container className="container">
+          <Adsense client="ca-pub-2072509419197864" slot="1323706138" />
           <Header/>
           <Box sx={{flexGrow: 1, my: 2}}>
               <Grid container spacing={2} justifyContent="center">
@@ -109,6 +112,14 @@ function App() {
                    data-ad-format="auto"
                    data-full-width-responsive="true">
               </ins>
+              <Adsense
+                  client="ca-pub-2072509419197864"
+                  slot="1323706138"
+                  style={{ display: 'block' }}
+                  layout="in-article"
+                  format="fluid"
+              />
+
           </div>
           <Footer/>
 
