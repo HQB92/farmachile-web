@@ -8,9 +8,6 @@ import Footer from './components/Footer';
 import { fetchFarmacias } from './services/api';
 import comunasChile from './region-comuna.json';
 import './index.css';
-import {Adsense} from '@ctrl/react-adsense';
-
-
 
 function App() {
   const [selectedComuna, setSelectedComuna] = useState('');
@@ -53,7 +50,7 @@ function App() {
 
   return (
       <Container className="container">
-          
+
           <Header/>
           <Box sx={{flexGrow: 1, my: 2}}>
               <Grid container spacing={2} justifyContent="center">
