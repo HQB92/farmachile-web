@@ -8,9 +8,6 @@ import Footer from './components/Footer';
 import { fetchFarmacias } from './services/api';
 import comunasChile from './region-comuna.json';
 import './index.css';
-import {Adsense} from '@ctrl/react-adsense';
-
-
 
 function App() {
   const [selectedComuna, setSelectedComuna] = useState('');
