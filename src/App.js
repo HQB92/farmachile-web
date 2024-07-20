@@ -104,7 +104,7 @@ function App() {
                   turno
                   en esta comuna</Typography>
           )}
-          <div className="ads">
+          {/*<div className="ads">
               <ins className="adsbygoogle"
                    style={{display: 'block'}}
                    data-ad-client="ca-pub-2072509419197864"  // Tu ID de cliente
@@ -120,7 +120,7 @@ function App() {
                   format="fluid"
               />
 
-          </div>
+          </div>*/}
           <Footer/>
 
       </Container>
