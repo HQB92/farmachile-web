@@ -53,7 +53,6 @@ function App() {
 
   return (
       <Container className="container">
-          <Adsense client="ca-pub-2072509419197864" slot="1323706138" />
           <Header/>
           <Box sx={{flexGrow: 1, my: 2}}>
               <Grid container spacing={2} justifyContent="center">
