@@ -87,7 +87,7 @@ function App() {
                           name={farmaciaTurno.local_nombre}
                           address={farmaciaTurno.local_direccion}
                           phone={farmaciaTurno.local_telefono}
-                          date={farmaciaTurno.fecha.split('-').reverse().join('-')}
+                          date={farmaciaTurno.fecha}
                           link={`https://www.waze.com/ul?ll=${farmaciaTurno.local_lat}%2C${farmaciaTurno.local_lng}&navigate=yes&zoom=17`}
                       />
                   </Grid>
