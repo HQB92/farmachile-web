@@ -11,7 +11,7 @@ jobs:
 
     steps:
       - name: Deploy using ssh
-        uses: appleboy/ssh-action@master
+        uses: appleboy/ssh-action@v1
         with:
           host: ${{ secrets.HOST }}
           username: ${{ secrets.USERNAME }}
@@ -19,8 +19,11 @@ jobs:
           key_type: pem
           port: 22
           script: |
+            set -e
             cd /home/bitnami/paginas/farmachile-web
             git pull origin main
-            npm install
-            npm run build
-            
+            # El proyecto usa pnpm y Vite (requiere Node >= 20.19); el build
+            # sigue saliendo en build/ para que el servidor no cambie.
+            command -v pnpm >/dev/null 2>&1 || npm install -g pnpm@9
+            pnpm install --frozen-lockfile
+            pnpm build

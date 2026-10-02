@@ -53,8 +53,8 @@ function App() {
 
           <Header/>
           <Box sx={{flexGrow: 1, my: 2}}>
-              <Grid container spacing={2} justifyContent="center">
-                  <Grid item xs={12} sm={6} md={4}>
+              <Grid container spacing={2} sx={{ justifyContent: "center" }}>
+                  <Grid size={{ xs: 12, sm: 6, md: 4 }}>
                       <Dropdown
                           label="Seleccione una región:"
                           options={comunasChile.map(region => ({
@@ -66,7 +66,7 @@ function App() {
                       />
                   </Grid>
                   {comunas.length > 0 && (
-                      <Grid item xs={12} sm={6} md={4}>
+                      <Grid size={{ xs: 12, sm: 6, md: 4 }}>
                           <Dropdown
                               label="Seleccione una comuna:"
                               options={comunas.map(comuna => ({
@@ -81,8 +81,8 @@ function App() {
               </Grid>
           </Box>
           {farmaciaTurno ? (
-              <Grid container spacing={3} justifyContent="center">
-                  <Grid item xs={12} sm={6} md={5}>
+              <Grid container spacing={3} sx={{ justifyContent: "center" }}>
+                  <Grid size={{ xs: 12, sm: 6, md: 5 }}>
                       <PharmacyCard
                           name={farmaciaTurno.local_nombre}
                           address={farmaciaTurno.local_direccion}
@@ -91,7 +91,7 @@ function App() {
                           link={`https://www.waze.com/ul?ll=${farmaciaTurno.local_lat}%2C${farmaciaTurno.local_lng}&navigate=yes&zoom=17`}
                       />
                   </Grid>
-                  <Grid item xs={12}>
+                  <Grid size={12}>
                       <Map src={googleMapUrl}/>
                   </Grid>
               </Grid>
